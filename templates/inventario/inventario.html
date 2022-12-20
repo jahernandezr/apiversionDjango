@@ -1,0 +1,144 @@
+{% extends 'basemodulos.html' %}
+
+<!-- {% load static %} -->
+
+{% block content %}
+<div class="containerbase">
+<h3 class="divtitulo text-center">Inventarios</h5>
+  <form class="row g-3 needs-validation" novalidate method="POST" action="{% url 'insertinventario' %}" style="padding-top:7%" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <div class="row">
+     <div class="col-md-3">
+        <label for="validationCustom01" class="form-label">TipoRecobro</label>
+        <select class="form-select" id="tiporecobro" name="tiporecobro" required>
+          <option value="" selected disabled>Seleccione  una opcion</option>
+          <option value="Ctc">ctc</option>
+          <option value="Mipres">Mipres</option>
+          <option value="Tutelas Mipres">Tutelas Mipres</option>
+          <option value="Tutelas No Mipres">Tutelas No MIpres</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="regimen" class="form-label">Regimen</label>
+        <select class="form-select" id="regimen" name="regimen" required>
+          <option value="" selected disabled>Seleccione  una opcion</option>
+          <option value="Contributivo">Contributivo</option>
+          <option value="Subsidiado">Subsidiado</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="descripcionrecobro" class="form-label">DescripcionRecobro</label>
+        <select class="form-select" id="descripcionrecobro" name="descripcionrecobro" required>
+          <option value="Recobros">Recobro</option>
+          <option value="">..</option>
+        </select>
+      </div>
+    </div>
+<!-- otra fila -->
+       <div class="col-md-2">
+      <label for="tipodocumentousuario" class="form-label">TipoDocumentoUsuario</label>
+      <select class="form-select" id="tipodocumentousuario" name="tipodocumentousuario" required>
+        <option value="" selected disabled>Seleccione  una opcion</option>
+          <option value="CC">Cedula</option>
+          <option value="TI">Tarjeta Identidad</option>
+          <option value="CE">Cedula Extranjeria</option>
+          <option value="NV">Nacido Vivo</option>
+          <option value="RC">Registro Civil</option>
+          <option value="PA">Pasapote</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label for="identificacionusuario" class="form-label">IdentificacionUsuario</label>
+      <input type="number" class="form-control" id="identificacionusuario" name="identificacionusuario" required>
+      </div>
+      <div class="col-md-2">
+        <label for="nitprestador" class="form-label">Nitprestador</label>
+        <input type="number" class="form-control" id="nitprestador" name="nitprestador" required>
+        </div>
+      <div class="col-md-6" id="nombreprestador3">
+          <!-- <label for="nombreprestador" class="form-label">nombreprestador</label>
+          <textarea value="" type="text" class="form-control" rows="1" id="nombreprestador" name="nombreprestador" required></textarea> -->
+      </div>
+<!-- otra fila -->
+    <div class="col-md-3">
+        <label for="numerofactura_recobro" class="form-label">Numerofactura_Recobro</label>
+        <input type="text" class="form-control" id="numerofactura_recobro" name="numerofactura_recobro" required>
+    </div>
+    <div class="col-md-2">
+        <label for="fechaprestacion" class="form-label">FechaPrestacion</label>
+        <input type="date" class="form-control" id="fechaprestacion" name="fechaprestacion" required>
+    </div>
+    <!-- <div class="col-md-2">
+        <label for="codtecnologia" class="form-label">CodTecnologia</label>
+        <input type="text" class="form-control" id="codtecnologia" name="codtecnologia" required>
+    </div>
+
+  <div class="col-md-5">
+      <label for="nombretecnologia" class="form-label">NombreTecnologia</label>
+      <textarea  type="text" class="form-control" rows="1" id="nombretecnologia" name="nombretecnologia" required></textarea>
+  </div> -->
+
+    <!-- otra fila -->
+    <!-- <div class="col-md-1">
+        <label for="cantidad" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+    </div>
+    <div class="col-md-2">
+        <label for="valorunit" class="form-label">ValorUnit</label>
+        <input type="number" class="form-control" id="valorunit" name="valorunit" required>
+    </div> -->
+    <div class="col-md-2">
+        <label for="valfacturado" class="form-label">ValorFacturado</label>
+        <input type="number" class="form-control" id="valfacturado" name="valfacturado" required>
+    </div>
+    <!-- <div class="col-md-2">
+        <label for="numeromipres_actactc" class="form-label">NumeroMipres_ActaCtc</label>
+        <input type="text" class="form-control" id="numeromipres_actactc" name="numeromipres_actactc" required>
+    </div>
+    <div class="col-md-2">
+      <label for="departamento" class="form-label">Departamento</label>
+      <select class="form-select" id="departamento" name="departamento" required>
+        <option value="" selected disabled>Seleccione  una opcion</option>
+        <option value="Contributivo">Contributivo</option>
+        <option value="Subsidiado">Subsidiado</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="municipio" class="form-label">Municipio</label>
+      <select class="form-select" id="municipio" name="municipio" required>
+        <option value="" selected disabled>Seleccione  una opcion</option>
+        <option value="Contributivo">Contributivo</option>
+        <option value="Subsidiado">Subsidiado</option>
+      </select>
+    </div> -->
+    <div class="col-12">
+      <button class="btn btn-dark" wit type="submit">Guardar cambios</button>
+    </div>
+    <input type="text" class="form-control" style ="display:none" id="username" name="username" value="{{ user.username }}">
+  </form>
+</div>
+
+<script type="text/javascript">
+
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>
+{% endblock %}

@@ -6,6 +6,7 @@ footer {
           width: 100%;
           bottom: 0;
           position:fixed;
+          opacity: .9;
 }
 .divfooter {
   background: rgba(255,255,255,1);
@@ -18,17 +19,36 @@ footer {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fefefe', GradientType=1 );
 }
 .divapis {
-  transform: rotate(340deg);
+  transform: rotate(360deg);
   display: inline-block;
   margin: 0px auto;
   font-weight: 600;
   line-height: 0.8;
   font-size: 20px;
-  color: #edeee9;
+  color: #1F1D1C;
   font-family: "Georgia";
   background: radial-gradient(grey, #FFF);
   border-radius: 200px 200px 200px 200px;
   -moz-border-radius: 200px 200px 200px 200px;
   -webkit-border-radius: 200px 200px 200px 200px;
   border: 11px double #e7eff0;
+}
+.divlogin {
+    opacity: .9;
+}
+.containerbase {
+  background: #FDFCFB;
+  opacity: .9;
+  width: 90%;
+  margin: 4%;
+  padding: 2%;
+  display: inline-block;
+  position: relative;
+  height: auto;
+  }
+.divtitulo {
+  -webkit-box-shadow: -15px 10px 11px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -15px 10px 11px 0px rgba(0,0,0,0.75);
+  box-shadow: -15px 10px 11px 0px rgba(0,0,0,0.75);
+  font-family: "Georgia";  
 }

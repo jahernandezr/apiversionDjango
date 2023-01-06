@@ -1,1 +1,166 @@
-hola recobro
+{% extends 'basemodulos.html' %}
+
+{% block content %}
+<div class="containerbase">
+<h3 class="divtitulo text-center">Construir Item de Recobro</h5>
+  <form class="row g-3 needs-validation" novalidate method="POST" action="{% url 'insertinventario' %}" style="padding-top:7%" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-md-2">
+      <label for="tipodoc" class="form-label">TipoDocumentoUsuario</label>
+      <select class="form-select" id="tipodoc" name="tipodoc" required>
+        <option value="" selected disabled>Seleccione  una opcion</option>
+          <option value="CC">Cedula</option>
+          <option value="TI">Tarjeta Identidad</option>
+          <option value="CE">Cedula Extranjeria</option>
+          <option value="NV">Nacido Vivo</option>
+          <option value="RC">Registro Civil</option>
+          <option value="PA">Pasapote</option>
+      </select>
+      </div>
+      <div class="col-md-2">
+      <label for="numdocumento" class="form-label">IdentificacionUsuario</label>
+      <input type="number" class="form-control" id="numdocumento" name="numdocumento" required>
+      </div>
+      <div class="col-md-4">
+      <label for="numactaCtc" class="form-label">numacta_Ctc</label>
+      <input type="text" class="form-control" id="numactaCtc" name="numactaCtc" required>
+      </div>
+      <div class="col-md-2">
+      <label for="feacta" class="form-label">fecha_acta</label>
+      <input type="date" class="form-control" id="feacta" name="feacta">
+      </div>
+      <div class="col-md-2">
+      <label for="cie10" class="form-label">Cie10</label>
+      <input type="text" class="form-control" id="cie10" name="cie10" required>
+      </div>
+
+      <div class="col-md-3">
+      <label for="facturaips" class="form-label">facturaips</label>
+      <input type="text" class="form-control" id="facturaips" name="facturaips" required>
+      </div>
+      <div class="col-md-3">
+      <label for="fechaPrestacion" class="form-label">Fecha_Prestacion</label>
+      <input type="date" class="form-control" id="fechaPrestacion" name="fechaPrestacion" required>
+      </div>
+      <div class="col-md-3">
+      <label for="nitprestador" class="form-label">Nit_prestador</label>
+      <input type="number" class="form-control" id="nitprestador" name="nitprestador" required>
+      </div>
+     <div class="col-md-3">
+        <label for="tiporecobroInput" class="form-label">TipoRecobro</label>
+        <select class="form-select" id="tiporecobroInput" name="tiporecobroInput" required>
+          <option value="" selected disabled>Seleccione  una opcion</option>
+          <option value="CtcMipres">ctc/mipres</option>
+          <option value="Tutelas">Tutelas</option>
+        </select>
+      </div>
+
+      <div class="tiporecobrodiv">
+        <div class="">
+          <div class="col-md-3">
+          <label for="numfallo" class="form-label">numfallo</label>
+          <input type="text" class="form-control" id="numfallo" name="numfallo" required>
+          </div>
+          <div class="col-md-3">
+          <label for="fefallo" class="form-label">fefallo</label>
+          <input type="date" class="form-control" id="fefallo" name="fefallo" required>
+          </div>
+          <div class="col-md-3">
+          <label for="numAutoridadJudicial" class="form-label">NumAutoridadJudicial</label>
+          <input type="number" class="form-control" id="numAutoridadJudicial" name="numAutoridadJudicial" required>
+          </div>
+          <div class="col-md-3">
+          <label for="codcausal" class="form-label">codcausal</label>
+          <select class="form-control" id="codcausal" name="codcausal">
+            <option value="2">Servicios No POS</option>
+            <option value="3">Medicamentos</option>
+            <option value="5">Otras Causas</option>
+            <option value="7">Tratamiento integral</option>
+          </select>
+          </div>
+
+          <div class="col-md-3">
+          <label for="codigodane" class="form-label">Codigo_Dane</label>
+          <input type="number" class="form-control" id="codigodane" name="codigodane" required>
+          </div>
+          <div class="col-md-9">
+          <label for="tipoautoridadjudicial" class="form-label">Tipoautoridad_judicial</label>
+            <textarea rows="1" class="form-control border-width-2 col-md-12" value="" id="tipoautoridadjudicial" name="tipoautoridadjudicial" placeholder="Tipautoridadjudicial">
+            </textarea>
+          </div>
+        </div>
+      </div>
+
+<!-- otra fila -->
+
+      <div class="col-md-3">
+        <label for="cantidad" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+        </div>
+      <div class="col-md-3">
+          <label for="valorunit" class="form-label">valorunit</label>
+          <input type="number" class="form-control" id="valorunit" name="valorunit" required>
+      </div>
+      <div class="col-md-3">
+          <label for="valfacturado" class="form-label">valfacturado</label>
+          <input type="number" class="form-control" id="valfacturado" name="valfacturado" required>
+      </div>
+      <div class="col-md-3">
+          <label for="copago" class="form-label">copago</label>
+          <input type="number" class="form-control" id="copago" name="copago" required>
+      </div>
+
+      <!-- otra fila -->
+
+            <div class="col-md-3">
+              <label for="codhomologo" class="form-label">Codigo_homologo</label>
+              <input type="text" class="form-control" id="codhomologo" name="codhomologo">
+              </div>
+            <div class="col-md-3">
+                <label for="valorunith" class="form-label">valorunit_homologo</label>
+                <input type="number" class="form-control" id="valorunith" name="valorunith">
+            </div>
+            <div class="col-md-3">
+                <label for="valorhomologo" class="form-label">Valor_homologo</label>
+                <input type="number" class="form-control" id="valorhomologo" name="valorhomologo">
+            </div>
+            <div class="col-md-3">
+                <label for="idsuministro" class="form-label">idsuministro</label>
+                <input type="number" class="form-control" id="idsuministro" name="idsuministro">
+            </div>
+
+<!-- otra fila -->
+
+<div class="col-md-3">
+  <label for="radanterior" class="form-label">Radicado_Anterior</label>
+  <input type="number" class="form-control" id="radanterior" name="radanterior">
+  </div>
+<div class="col-md-2">
+    <label for="itemanterior" class="form-label">Item_Anterior</label>
+    <input type="number" class="form-control" id="itemanterior" name="itemanterior">
+</div>
+<div class="col-md-3">
+    <label for="radicadoApf" class="form-label">Radicado_Apf</label>
+    <input type="number" class="form-control" id="radicadoApf" name="radicadoApf">
+</div>
+<div class="col-md-2">
+    <label for="feauditoria" class="form-label">Fecha_Auditoria</label>
+    <input type="date" class="form-control" id="feauditoria" name="feauditoria">
+</div>
+<div class="col-md-2">
+    <label for="valliquidado" class="form-label">Valor_liquidado</label>
+    <input type="number" class="form-control" id="valliquidado" name="valliquidado" required>
+</div>
+
+<!-- otra fila -->
+
+
+    <div class="col-12">
+      <button class="btn btn-dark" wit type="submit">Guardar cambios</button>
+    </div>
+    <input type="text" class="form-control" style ="display:none" id="username" name="username" value="{{ user.username }}">
+  </form>
+</div>
+
+{% endblock %}

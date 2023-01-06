@@ -18,8 +18,7 @@ class RecobrosDetalle(models.Model):
     copago = models.IntegerField()
     valliquidado = models.IntegerField()
     codhomologo = models.CharField(max_length=30)
-    cantidad = models.IntegerField()
-    valorunit = models.IntegerField()
+    valorunith = models.IntegerField()
     valorhomologo = models.IntegerField()
     idsuministro = models.IntegerField()
     radanterior = models.IntegerField()
@@ -53,3 +52,21 @@ class InformacionUsuarios(models.Model):
     estadoAfiliacion = models.CharField(max_length=50)
     feInicio = models.DateField()
     fefinal = models.DateField()
+
+    def __str__(self):
+        return self.numdocumento
+
+class Cie10(models.Model):
+    codigoCie10 = models.CharField(max_length=20)
+    descripcion = models.CharField(max_length=350)
+
+    def __str__(self):
+        return self.descripcion
+
+class ImagenesRecobros(models.Model):
+    facturaips = models.CharField(max_length=40)
+    nombreImagen = models.ImageField(upload_to='media/media/')
+    fechaCreacion = models.DateTimeField(auto_now_add=True)
+
+    def __init__(self):
+        return self.facturaips

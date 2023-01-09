@@ -3,10 +3,12 @@
 {% block content %}
 <div class="containerbase">
 <h3 class="divtitulo text-center">Construir Item de Recobro</h5>
-  <form id="formrecobros" class="row g-3 needs-validation" novalidate method="POST" action="{% url 'insertinventario' %}" style="padding-top:7%" enctype="multipart/form-data" >
+  <form id="formrecobros" class="row g-3 needs-validation" novalidate method="POST" action="{% url 'insertrecobros' %}" style="padding-top:7%" enctype="multipart/form-data" >
+<div id="alertform">
+</div>
     {% csrf_token %}
 <!-- otra fila -->
-  <div class="row">
+   <div class="row">
     <div class="col-md-2">
       <label for="tipodoc" class="form-label">TipoDocumentoUsuario</label>
       <select class="form-select" id="tipodoc" name="tipodoc" required>
@@ -29,7 +31,7 @@
       </div>
       <div class="col-md-2">
         <label for="feacta" class="form-label">fecha_acta</label>
-        <input type="date" class="form-control" id="feacta" name="feacta">
+        <input type="date" class="form-control" id="feacta" name="feacta" required>
       </div>
         <div class="col-md-2">
           <label for="cie10" class="form-label">Cie10</label>
@@ -60,7 +62,27 @@
         </div>
       </div>
     <!-- otra fila -->
-
+  <div class="row">
+    <div class="col-md-3">
+       <label for="tipoTecnologia" class="form-label">Tipo_Tecnologia</label>
+       <select class="form-select" id="tipoTecnologia" name="tipoTecnologia" required>
+         <option value="" selected disabled>Seleccione  una opcion</option>
+         <option value="Medicamentos">Medicamentos</option>
+         <option value="Procedimientos">Procedimientos</option>
+         <option value="Insumos">Insumos</option>
+         <option value="Dispositivos">Dispositivos</option>
+         <option value="ServiciosComplementarios">Servicios Complementarios</option>
+       </select>
+     </div>
+    <div class="col-md-3">
+      <label for="codtecnologia" class="form-label">Codigo_Tecnologia</label>
+      <input type="text" class="form-control" id="codtecnologia" name="codtecnologia" required>
+    </div>
+    <div class="col-md-6">
+      <label for="desctecnologia" class="form-label">Descripcion_Tecnologia</label>
+      <textarea name="desctecnologia" rows="1" cols="12" class="form-control" id="desctecnologia" required></textarea>
+    </div>
+  </div>
     <!-- otra fila -->
     <div class="tiporecobrodiv">
 
@@ -85,11 +107,7 @@
         </div>
       </div>
       <!-- otra fila -->
-          <div class="row">
-            <div class="col-md-3">
-              <label for="codhomologo" class="form-label">Codigo_homologo</label>
-              <input type="text" class="form-control" id="codhomologo" name="codhomologo">
-            </div>
+        <div class="row">
             <div class="col-md-3">
                 <label for="valorunith" class="form-label">valorunit_homologo</label>
                 <input type="number" class="form-control" id="valorunith" name="valorunith">
@@ -100,22 +118,32 @@
             </div>
             <div class="col-md-3">
                 <label for="idsuministro" class="form-label">idsuministro</label>
-                <input type="number" class="form-control" id="idsuministro" name="idsuministro">
+                <input type="number" class="form-control" id="idsuministro" name="idsuministro" required>
             </div>
+              <div class="col-md-3">
+                <label for="codhomologo" class="form-label">Codigo_homologo</label>
+                <input type="text" class="form-control" id="codhomologo" name="codhomologo" >
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="deschomologo" class="form-label">Descripcion_Homologo</label>
+                <textarea name="deschomologo" rows="2" cols="12" class="form-control" id="deschomologo"></textarea>
+              </div>
             </div>
 <!-- otra fila -->
         <div class="row">
           <div class="col-md-3">
             <label for="radanterior" class="form-label">Radicado_Anterior</label>
-            <input type="number" class="form-control" id="radanterior" name="radanterior">
+            <input type="number" class="form-control" id="radanterior" name="radanterior" required>
           </div>
           <div class="col-md-2">
               <label for="itemanterior" class="form-label">Item_Anterior</label>
-              <input type="number" class="form-control" id="itemanterior" name="itemanterior">
+              <input type="number" class="form-control" id="itemanterior" name="itemanterior" required>
           </div>
           <div class="col-md-3">
               <label for="radicadoApf" class="form-label">Radicado_Apf</label>
-              <input type="number" class="form-control" id="radicadoApf" name="radicadoApf">
+              <input type="number" class="form-control" id="radicadoApf" name="radicadoApf" required>
           </div>
           <div class="col-md-2">
               <label for="feauditoria" class="form-label">Fecha_Auditoria</label>
@@ -132,8 +160,33 @@
           <div class="col-12">
             <button class="btn btn-dark" wit type="submit">Guardar cambios</button>
           </div>
-     <input type="text" class="form-control" style ="display:none" id="username" name="username" value="{{ user.username }}">
+     <input type="text" class="form-control" style ="display:none" id="idusuario" name="idusuario" value="{{ user.id }}">
   </form>
 </div>
+
+<script type="text/javascript">
+
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>
+
 
 {% endblock %}

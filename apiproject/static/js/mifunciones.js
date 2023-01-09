@@ -1,33 +1,61 @@
 "use strict"
 var getUrl = window.location;
-var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" //+ getUrl.pathname.split('/')[1];
 
 $(document).on('change','#nitprestador',function(){
   var nitprestador=$('#nitprestador').val();
-  alert(nitprestador);
+  //alert(baseUrl);
   $.ajax({
-      url: baseUrl+'/buscarnit/',
+      url: baseUrl+'inventario/buscarnit/',
       type: 'POST',
       data: {'nitprestador': nitprestador,csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()},
       dataType: 'json',
       async: false,
       success:function(data){
         data.forEach(function(dat){
-          //console.log(dat['fields'].nitprestador);
+          $('#alertform').append('<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
+            '<div id="nombreprestador3">'+
+            '</div>'+
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+
+          '</div>'
+            )
            $('#nombreprestador3').append('<label for="nombreprestador" class="form-label">nombreprestador</label>'+
            '<textarea value="'+ dat['fields'].nombreprestador +'" type="text" class="form-control" rows="1" id="nombreprestador" name="nombreprestador" required>'+ dat['fields'].nombreprestador +'</textarea>'
- //          $('#nombreprestador').html(dat['fields'].nombreprestador);
-// <label for="nombreprestador" class="form-label">nombreprestador</label>
-// <textarea value="" type="text" class="form-control" rows="1" id="nombreprestador" name="nombreprestador" required></textarea>
-          );
+           );
         });
       }
   })
 });
+
+$(document).on('change','#numdocumento',function(){
+  var tipodoc=$('#tipodoc').val();
+  var numdocumento=$('#numdocumento').val();
+
+  //alert(nitprestador);
+  $.ajax({
+      url: baseUrl+'recobros/getnodocument/',
+      type: 'POST',
+      data: {'tipodoc':tipodoc,'numdocumento': numdocumento,csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()},
+      dataType: 'json',
+      async: false,
+      success:function(data){
+        data.forEach(function(dat){
+          $('#alertform').append('<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
+            '<div id="nombreprestador3">'+
+            '</div>'+
+            '<strong>Usuario!</strong>'+ dat['fields'].primerNombre+' '+ dat['fields'].segundoNombre+' '+ dat['fields'].primerApellido+' '+ dat['fields'].segundoApellido+'. '+
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+
+          '</div>'
+            )
+        });
+      }
+  })
+});
+
 $(document).on('click','.navbar-toggler-icon',function(){
   var inputemail = document.getElementById('inputemail').value;
   $.ajax({
-      url: baseUrl+'/buscarmodulos/',
+      url: baseUrl+'inventario/buscarmodulos/',
       type: 'POST',
       data: {'inputemail': inputemail, csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()},
       dataType: 'json',

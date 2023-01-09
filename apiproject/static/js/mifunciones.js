@@ -40,3 +40,46 @@ $(document).on('click','.navbar-toggler-icon',function(){
      }
    })
 })
+$(document).on('change','#formrecobros #tiporecobroInput',function(){
+  var tip = document.getElementById('tiporecobroInput').value;
+  if(tip === 'Tutelas'){
+    $('.aa1').remove();
+    $('.tiporecobrodiv').append(
+      '<div class="row aa1">'+
+          '<div class="col-md-3">'+
+            '<label for="numfallo" class="form-label">numfallo</label>'+
+            '<input type="text" class="form-control" id="numfallo" name="numfallo" required>'+
+          '</div>'+
+          '<div class="col-md-3">'+
+            '<label for="fefallo" class="form-label">fefallo</label>'+
+            '<input type="date" class="form-control" id="fefallo" name="fefallo" required>'+
+          '</div>'+
+          '<div class="col-md-3">'+
+            '<label for="numAutoridadJudicial" class="form-label">NumAutoridadJudicial</label>'+
+            '<input type="number" class="form-control" id="numAutoridadJudicial" name="numAutoridadJudicial" required>'+
+          '</div>'+
+          '<div class="col-md-3">'+
+           '<label for="codcausal" class="form-label">codcausal</label>'+
+            '<select class="form-control" id="codcausal" name="codcausal">'+
+              '<option value="2">Servicios No POS</option>'+
+              '<option value="3">Medicamentos</option>'+
+              '<option value="5">Otras Causas</option>'+
+              '<option value="7">Tratamiento integral</option>'+
+            '</select>'+
+          '</div>'+
+
+          '<div class="col-md-3">'+
+            '<label for="codigodane" class="form-label">Codigo_Dane</label>'+
+            '<input type="number" class="form-control" id="codigodane" name="codigodane" required>'+
+          '</div>'+
+          '<div class="col-md-9">'+
+            '<label for="tipoautoridadjudicial" class="form-label">Tipoautoridad_judicial</label>'+
+            '<textarea rows="1" class="form-control border-width-2 col-md-12" value="" id="tipoautoridadjudicial" name="tipoautoridadjudicial" placeholder="Tipautoridadjudicial">'+
+            '</textarea>'+
+          '</div>'+
+        '</div>'
+        )
+      }else {
+        $('.aa1').remove();
+      }
+    })
